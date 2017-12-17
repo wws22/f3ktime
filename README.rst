@@ -24,7 +24,9 @@ stopwatch and score counting program during F3K aeromodelling contests.
         :width: 100%
         :align: center
 
-This project includes:
+
+The project includes:
+=====================
 
 Sample of WSDL::
 
