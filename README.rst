@@ -7,7 +7,7 @@ This is f3k timesend webservice prototype
 Installing
 ==========
 
-Install from newest version from github::
+Install the newest version from github::
 
    git clone https://github.com/wws22/f3ktime.git
 
