@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://timesend/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://timesend/" name="f3kService">
+    <types>
+        <xsd:schema>
+            <xsd:import namespace="http://timesend/" schemaLocation="f3ktime.xsd"/>
+        </xsd:schema>
+    </types>
+    <message name="beginSession">
+        <part name="parameters" element="tns:beginSession"/>
+    </message>
+    <message name="beginSessionResponse">
+        <part name="parameters" element="tns:beginSessionResponse"/>
+    </message>
+    <message name="getTasklist">
+        <part name="parameters" element="tns:getTasklist"/>
+    </message>
+    <message name="getTasklistResponse">
+        <part name="parameters" element="tns:getTasklistResponse"/>
+    </message>
+    <message name="getPilots">
+        <part name="parameters" element="tns:getPilots"/>
+    </message>
+    <message name="getPilotsResponse">
+        <part name="parameters" element="tns:getPilotsResponse"/>
+    </message>
+    <message name="setScores">
+        <part name="parameters" element="tns:setScores"/>
+    </message>
+    <message name="setScoresResponse">
+        <part name="parameters" element="tns:setScoresResponse"/>
+    </message>
+    <portType name="f3k">
+        <operation name="beginSession">
+            <input message="tns:beginSession"/>
+            <output message="tns:beginSessionResponse"/>
+        </operation>
+        <operation name="getTasklist">
+            <input message="tns:getTasklist"/>
+            <output message="tns:getTasklistResponse"/>
+        </operation>
+        <operation name="getPilots">
+            <input message="tns:getPilots"/>
+            <output message="tns:getPilotsResponse"/>
+        </operation>
+        <operation name="setScores">
+            <input message="tns:setScores"/>
+            <output message="tns:setScoresResponse"/>
+        </operation>
+    </portType>
+    <binding name="f3kPortBinding" type="tns:f3k">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+        <operation name="beginSession">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getTasklist">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="getPilots">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+        <operation name="setScores">
+            <soap:operation soapAction=""/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="f3kService">
+        <port name="f3kPort" binding="tns:f3kPortBinding">
+            <soap:address location="http://127.0.0.1:6543/services/timesend/f3k"/>
+        </port>
+    </service>
+</definitions>

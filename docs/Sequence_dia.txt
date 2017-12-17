@@ -1,0 +1,28 @@
+Please use the follow lines on https://sequencediagram.org
+Or simple use the URL:
+https://sequencediagram.org/index.html?initialData=C4S2BsFMAIDEGYDS1QFtIGdIDsAm0B1AZWiwEcBXHAYxlxAEMBzAJwdQCgOjgB7ABwDuDYNQAWAWgB8RSCwBucgFwAjSExDZZGDCF7YO2XsBi9FLaDwHDRYgDSyFyyznzAxMAFSeA5MxzAPt6kwCyaTFxWQiLiADwSEo7mquqa2rr6AEqY-PpYhsam5pZ80bYOcsnQ2cAULNgYKB7Q3j5YOnrYAPoguEGeADrY3gAqYiCN8gzgVNAUWPia0JDmAJ7Q2JAAHsDQLJCUmMDekaU24tJJykyQwCMMGADW4BPAp9YxYvGJlde3908XhhgNkMLkGpACiZoGY5CUPuUriwlNVbnUGk0YEDdjCAGYtXwsXgUPAYfrQBh4Ak+YAPR5k4IvR4wBhKIbQACMdmgAEFuQBtAAyD12uJeTDEwAAugBudkAJm5AFkBQAhEBMaDgBi4XByWXQIYAOhN0HeZQuMl+yJuwAACiBwMYMObzl8EkilLaHU7gBhQeD8kZobCLFE3RUnMjUbV6o13DBsBRUGp9vhsXjqfxHc7yUyWWzsFzoAAiABSvDE2GgABFeJAS3LsIrSwA5evgQggHCNobwbnl9iYaAACSNtd4vBewAgDabJvHrs+l2tSiwwCI1F4+xdwaKcPDn0jyVkpMx0CzOeAXSTKbk-W5rSJJNwN+TqfJlPwDBYbHWvHxNAWUaLAt1JQsAG94AABjsAAWABWOwADZYIAdiQgBOWCOWgpCOXlaCAF8zW4M5Pm+T1103bdMADPJIT3GFikPRFVxjdF42aYERHmTMBDkEROkLABeMTxIkySpOkiShm8AB5RBggkVFDmBClqFofgTHwDAKE0zAMFxChwHAVYjTkzwCB5TJW2Uwgf2wcIAEJoDGTAYAwLcdw0rSdJhbAzOgfgf1AagTJ-MzxyIXh0D2TATL9aAxAeaA1BwaBcCJfh+EgXALOGTweUFTJ7IAUV-bdXPc0hvOHXB6wwbAaV8yBtLy7k1GoBh5k82LIH0FlwH2HV1lxR0oHwHdEowccAGEPGoR5oDAaBUEpChpjM7l+CgB5IGcyzYB5ABJQV7OyNTRQYR08oKmSHseyTLK-c8fz-TMGAM9qpoS8A-RODggA
+===========================================================
+title F3K timesend WS sequence diagram
+
+Stopwatch->Server:beginSession
+note over Stopwatch,Server: Send the **'agent'** string
+
+Stopwatch<--Server:beginSessionResponse
+note over Stopwatch,Server: Returns the **'session_id'**\n**This value used in every next request**
+
+Stopwatch->Server:getTasklist
+
+Stopwatch<--Server:getTasklistResponse
+note over Stopwatch,Server: Returns the list  of **'rounds'** and **'tasks'** like a:\n 1, A, [Last flight];\n 2, M, [Big ladder]; \n...
+
+Stopwatch->Server:getPilots
+
+Stopwatch<--Server:getPilotsResponse
+note over Stopwatch,Server: Returns the numbered list of **'pilots'** like a:\n1, "John Doe";\n2, "Noel Wien";\n3, "James H. Doolittle";\n...
+
+Stopwatch->Server:setScores
+note over Stopwatch,Server:Sends the  **'pilot_number'**, **'round_number'** and array of time as seconds:\n{30,45,60,75,90,105,120}
+
+Stopwatch<--Server:setScoresResponse
+note over Stopwatch,Server: Returns the status of operation:\n================================\n**OK** - Request accepted successfully.\n**WARN** - Warning! These scores accepted only particularly. Some results has been dropped.\n**ALR** - Error! The scores doesn't accepted, because someone already filled results. Check it manually, please!\n**FAIL** - Request failed.\n================================\n**and the array of accepted results**
+

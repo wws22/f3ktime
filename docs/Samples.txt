@@ -1,0 +1,52 @@
+=============================================================================================================
+setScores request
+=============================================================================================================
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tim="http://timesend/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tim:setScores>
+         <session_id>36141295a0ef12d63cf715c100d14f0c</session_id>
+         <pilot_number>1</pilot_number>
+         <round_number>2</round_number>
+         <!--Zero or more repetitions:-->
+         <time>59</time>
+         <time>119</time>
+         <time>180</time>
+         <time>236</time>
+      </tim:setScores>
+   </soapenv:Body>
+</soapenv:Envelope>
+
+
+=============================================================================================================
+setScoresResponse
+=============================================================================================================
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+   <S:Body>
+      <ns2:setScoresResponse xmlns:ns2="http://timesend/">
+         <accepted>
+            <status>OK</status>
+            <session_id>36141295a0ef12d63cf715c100d14f0c</session_id>
+            <description>Next scores are accepted</description>
+            <response>
+               <data>
+                  <key>1</key>
+                  <value>0:59</value>
+               </data>
+               <data>
+                  <key>2</key>
+                  <value>1:59</value>
+               </data>
+               <data>
+                  <key>3</key>
+                  <value>3:00</value>
+               </data>
+               <data>
+                  <key>4</key>
+                  <value>3:56</value>
+               </data>
+            </response>
+         </accepted>
+      </ns2:setScoresResponse>
+   </S:Body>
+</S:Envelope>

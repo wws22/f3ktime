@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:tns="http://timesend/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://timesend/">
+    <xs:annotation>
+        <xs:documentation>
+            This XSD describe interchange data between stopwatch and F3KScore programs.
+        </xs:documentation>
+    </xs:annotation>
+
+    <xs:element name="beginSession" type="tns:beginSession"/>
+    <xs:element name="beginSessionResponse" type="tns:beginSessionResponse"/>
+
+    <xs:element name="getTasklist" type="tns:getTasklist"/>
+    <xs:element name="getTasklistResponse" type="tns:getTasklistResponse"/>
+
+    <xs:element name="getPilots" type="tns:getPilots"/>
+    <xs:element name="getPilotsResponse" type="tns:getPilotsResponse"/>
+
+    <xs:element name="setScores" type="tns:setScores"/>
+    <xs:element name="setScoresResponse" type="tns:setScoresResponse"/>
+
+    <xs:complexType name="beginSession">
+        <xs:annotation>
+            <xs:documentation>
+                This is initial/login query. That query reserved for some future things.
+                Main purpose contain in get the session_id for this stopwatch-client for a current contest.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="agent" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>
+                        Something like a User-Agent info Software/Hardware/etc.
+                        This field provide a little part of future client identification info.
+                        Samples:
+                            'F3K Stopwatch v1.4 / Android / Joe_phones'
+                            'F3K Master system / Windows / Official_PC'
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="beginSessionResponse">
+        <xs:annotation>
+            <xs:documentation>This is response for login query.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="login" type="tns:baseAnswerType" minOccurs="1"  maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="baseAnswerType">
+        <xs:annotation>
+            <xs:documentation>This is base type for server's answer.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="session_id" type="tns:sessionIdType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="status" type="tns:baseStatusType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="description" type="tns:descriptionType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="extAnswerType">
+        <xs:annotation>
+            <xs:documentation>This is extended type for server's answer. The type can include various data presented as list.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="tns:baseAnswerType">
+                <xs:sequence>
+                    <xs:element name="response" minOccurs="0">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element name="data" type="tns:values" minOccurs="0" maxOccurs="unbounded"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="setScoresAnswerType">
+        <xs:annotation>
+            <xs:documentation>The answer can include accepted time data presented as list and some more types of status for return.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="session_id" type="tns:sessionIdType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="status" type="tns:setScoresStatusType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="description" type="tns:descriptionType" minOccurs="0"/>
+            <xs:element name="response" minOccurs="0">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="data" type="tns:values" minOccurs="0" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="baseStatusType">
+        <xs:annotation>
+            <xs:documentation>Restricted status for server's response.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OK">
+                <xs:annotation>
+                    <xs:documentation>Request accepted successfully.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FAIL">
+                <xs:annotation>
+                    <xs:documentation>Request failed</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="setScoresStatusType">
+        <xs:annotation>
+            <xs:documentation>Restricted status for server's response.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OK">
+                <xs:annotation>
+                    <xs:documentation>Request accepted successfully.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FAIL">
+                <xs:annotation>
+                    <xs:documentation>Request failed.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="WARN">
+                <xs:annotation>
+                    <xs:documentation>Warning! These scores accepted only particularly. Some results has been dropped.</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ALR">
+                <xs:annotation>
+                    <xs:documentation>Error! The scores doesn't accepted, because someone already filled results. Check it manually, please!</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="sessionIdType">
+        <xs:annotation>
+            <xs:documentation>
+                This is ID of the client during current session/contest.
+                Sample:'5face63dbe8294313182326b96191cb2'
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:simpleType name="descriptionType">
+        <xs:annotation>
+            <xs:documentation>
+                That is non mandatory description for the value of status.
+                The description can be show to client as a human readable string.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+
+    <xs:complexType name="getTasklist">
+        <xs:annotation>
+            <xs:documentation>This is the task list request for the contest.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="session_id" type="tns:sessionIdType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="getTasklistResponse">
+        <xs:annotation>
+            <xs:documentation>
+                Returns the numbered list of tasks like a:
+                Round/Key, Task/Value, [Description]
+                -------------------------------------
+                    1,        "A",     "Last flight";
+                    2,        "B";
+                    3,        "M",     "Big ladder";
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="tasklist" type="tns:extAnswerType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="getPilots">
+        <xs:annotation>
+            <xs:documentation>This is the pilots list request.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="session_id" type="tns:sessionIdType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="getPilotsResponse">
+        <xs:annotation>
+            <xs:documentation>
+                Returns the numbered list of pilots like a:
+                No/Key    Name/Value
+                -------------------------
+                   1,     "John Doe";
+                   2,     "Noel Wien";
+                   3,     "James H. Doolittle";
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="pilots" type="tns:extAnswerType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="setScores">
+        <xs:annotation>
+            <xs:documentation>
+                Sends the pilot_number, round_number and array of time as seconds
+                {30,45,60,75,90,105,120}
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="session_id" type="tns:sessionIdType" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="pilot_number" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="round_number" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="time" type="xs:integer" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="setScoresResponse">
+        <xs:annotation>
+            <xs:documentation>The answer can include accepted time data presented as list and 4 types of status (OK|WARN|ALR|FAIL).</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="accepted" type="tns:setScoresAnswerType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="values">
+        <xs:annotation>
+            <xs:documentation>This is the one typical part of bulk data.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="key" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Despite the declared a string type, an integer number are presented in this field at most cases.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
