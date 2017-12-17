@@ -34,7 +34,7 @@ XSD for datatypes::
 
    docs/f3ktime.xsd
 
-Samples of SOAP interaction:
+Samples of SOAP interaction::
 
    docs/Samples.txt
 
