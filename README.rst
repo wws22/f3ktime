@@ -40,7 +40,7 @@ Samples of SOAP interaction::
 
 The Example of server side code::
 
-   src/lib/f3k.java
+   src/timesend/f3k.java
 
 This code can try with SOAP UI <https://www.soapui.org/>
 
