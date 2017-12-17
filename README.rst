@@ -42,6 +42,8 @@ The Example of server side code::
 
    src/lib/f3k.java
 
+This code can try with SOAP UI <https://www.soapui.org/>
+
 
 More about F3K/DLG
 ==================
