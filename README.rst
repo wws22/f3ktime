@@ -56,4 +56,4 @@ You can read them online at <https://en.wikipedia.org/wiki/Discus_Launch_Glider>
 Authors and contact info
 ========================
 
-Victor Selukov <victor.selukov@gmail.com>
+Victor Selukov <victor [dot] selukov [at] gmail.com>
