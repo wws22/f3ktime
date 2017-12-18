@@ -3,8 +3,6 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlType;
 import javax.xml.ws.Endpoint;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -110,7 +108,11 @@ public class f3k {
 
     public static void main(String[] argv) {
         Object implementor = new f3k();
-        Endpoint.publish(getWsEndpoint(), implementor);
+        String endpoint = getWsEndpoint();
+        System.out.println("Service: " + endpoint);
+        System.out.println("WSDL:    " + endpoint+"?wsdl");
+        System.out.println("XSD:     " + endpoint+"?xsd=1");
+        Endpoint.publish(endpoint, implementor);
     }
 
 }
