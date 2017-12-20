@@ -53,7 +53,8 @@ The best practice contain is in use DNS Service Discovery (DNS-SD) like a zeroco
 We has tried to use Zeroconf library <https://github.com/faceless2/cu-zeroconf> and has been very satisfied.
 
 It was looked like:
-```java
+.. code-block:: java
+
 Zeroconf zeroconf = new Zeroconf();
 zeroconf.addAllNetworkInterfaces();
 Service s = zeroconf.newService("f3ktime", "http", 6543).putText("path", "/services/timesend/f3k");
@@ -67,7 +68,7 @@ s.announce();
 */
 service.cancel();
 zeroconf.close();
-```
+
 
 More about F3K/DLG
 ==================
