@@ -59,7 +59,7 @@ zeroconf.addAllNetworkInterfaces();
 Service s = zeroconf.newService("f3ktime", "http", 6543).putText("path", "/services/timesend/f3k");
 s.announce();
 /*
- Place your WS here:
+ Place your WS here :
  Object implementor = new f3k();
  String endpoint = getWsEndpoint();
  Endpoint.publish(endpoint, implementor);
