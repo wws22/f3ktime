@@ -46,6 +46,28 @@ The Example of server side code::
 
 This code can try with SOAP UI <https://www.soapui.org/>
 
+NB!
+===
+
+The best practice contain is in use DNS Service Discovery (DNS-SD) like a zeroconf or mDNS-SD.
+We has tried to use Zeroconf library <https://github.com/faceless2/cu-zeroconf> and has been very satisfied.
+
+It was looked like:
+```java
+Zeroconf zeroconf = new Zeroconf();
+zeroconf.addAllNetworkInterfaces();
+Service s = zeroconf.newService("f3ktime", "http", 6543).putText("path", "/services/timesend/f3k");
+s.announce();
+/*
+ Place your WS here:
+ Object implementor = new f3k();
+ String endpoint = getWsEndpoint();
+ Endpoint.publish(endpoint, implementor);
+ ...
+*/
+service.cancel();
+zeroconf.close();
+```
 
 More about F3K/DLG
 ==================
