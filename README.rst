@@ -49,7 +49,7 @@ This code can try with SOAP UI <https://www.soapui.org/>
 NB!
 ===
 
-The best practice contain is in use DNS Service Discovery (DNS-SD) like a Zeroconf, Bonjour, mDNS-SD.
+The best practice contain is in use DNS Service Discovery (DNS-SD) like a Zeroconf, Bonjour, mDNS-SD <http://www.dns-sd.org>.
 That make possible to find the f3ktime-server automatically from smartphone or any other device in your LAN.
 
 We has tried to use Zeroconf library <https://github.com/faceless2/cu-zeroconf> and has been very satisfied.
