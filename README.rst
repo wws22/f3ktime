@@ -72,6 +72,10 @@ It was looked like:
     s.cancel();
     zeroconf.close();
 
+We has used the own fixed version of cu-zeroconf. For install from github enter::
+
+    git clone https://github.com/wws22/cu-zeroconf
+    git checkout fixes
 
 More about F3K/DLG
 ==================
