@@ -109,7 +109,16 @@
             </xs:enumeration>
             <xs:enumeration value="FAIL">
                 <xs:annotation>
-                    <xs:documentation>Request failed</xs:documentation>
+                    <xs:documentation>
+                        Request failed.
+                        The reason of fail contains in ...AnswerType/@description.
+                        NB!
+                            Check the @session_id!
+                            Server can return the empty string '' instead of ID.
+                            It does mean that client session was dropped and client
+                            must repeat beginSession, getTasklist and getPilots queries one more time.
+                            Server can use this in case when tasks or pilots lists has been modified.
+                    </xs:documentation>
                 </xs:annotation>
             </xs:enumeration>
         </xs:restriction>
@@ -148,6 +157,12 @@
             <xs:documentation>
                 This is ID of the client during current session/contest.
                 Sample:'5face63dbe8294313182326b96191cb2'
+
+                Server can return the empty string '' instead of ID.
+                This value can be used together with status='FAIL'.
+                It does mean that client session was dropped and client
+                must repeat beginSession, getTasklist and getPilots queries one more time.
+                Server can use this in case when tasks or pilots lists has been modified.
             </xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string"/>
