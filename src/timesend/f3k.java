@@ -36,7 +36,7 @@ public class f3k {
 
         v.add( new Values("1", "A") );
         v.add( new Values("2", "B") );
-        v.add( new Values("3", "M", "Big ladder") );
+        v.add( new Values("3", "K", "Big ladder") );
         v.add( new Values("4", "H", "1234") );
 
         a.setResponse(v);
