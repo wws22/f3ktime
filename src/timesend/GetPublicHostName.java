@@ -29,9 +29,9 @@ public class GetPublicHostName
                     for(Enumeration ips = iface.getInetAddresses();ips.hasMoreElements();)
                     {
                         ia = (InetAddress)ips.nextElement();
-                        if (Pattern.matches(regex, ia.getCanonicalHostName()))
+                        if (Pattern.matches(regex, ia.getHostAddress()))  //getHostAddress | getCanonicalHostName
                         {
-                            myip = ia.getCanonicalHostName();
+                            myip = ia.getHostAddress(); //getHostAddress | getCanonicalHostName
                             return myip;
                         }
                     }
