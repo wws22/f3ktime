@@ -23,7 +23,7 @@ public class GetPublicHostName
             {
                 iface = (NetworkInterface)ifaces.nextElement();
                 ethr = iface.getDisplayName();
-                if((Pattern.matches("eth[0-9]", ethr)) || (Pattern.matches("wlan[0-9]", ethr)))
+                //if((Pattern.matches("eth[0-9]", ethr)) || (Pattern.matches("wlan[0-9]", ethr)))
                 {
                     InetAddress ia = null;
                     for(Enumeration ips = iface.getInetAddresses();ips.hasMoreElements();)
@@ -31,8 +31,10 @@ public class GetPublicHostName
                         ia = (InetAddress)ips.nextElement();
                         if (Pattern.matches(regex, ia.getHostAddress()))  //getHostAddress | getCanonicalHostName
                         {
-                            myip = ia.getHostAddress(); //getHostAddress | getCanonicalHostName
-                            return myip;
+                            if( ! ia.getHostAddress().equals("127.0.0.1") ){
+                                myip = ia.getHostAddress(); //getHostAddress | getCanonicalHostName
+                                return myip;
+                            }
                         }
                     }
                 }
