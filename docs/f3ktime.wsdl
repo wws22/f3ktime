@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://timesend/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://timesend/" name="f3kService">
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://timesend/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://timesend/" name="TimesendService">
     <types>
         <xsd:schema>
             <xsd:import namespace="http://timesend/" schemaLocation="f3ktime.xsd"/>
@@ -29,7 +29,7 @@
     <message name="setScoresResponse">
         <part name="parameters" element="tns:setScoresResponse"/>
     </message>
-    <portType name="f3k">
+    <portType name="timesend">
         <operation name="beginSession">
             <input message="tns:beginSession"/>
             <output message="tns:beginSessionResponse"/>
@@ -47,7 +47,7 @@
             <output message="tns:setScoresResponse"/>
         </operation>
     </portType>
-    <binding name="f3kPortBinding" type="tns:f3k">
+    <binding name="timesendPortBinding" type="tns:timesend">
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
         <operation name="beginSession">
             <soap:operation soapAction=""/>
@@ -86,8 +86,8 @@
             </output>
         </operation>
     </binding>
-    <service name="f3kService">
-        <port name="f3kPort" binding="tns:f3kPortBinding">
+    <service name="TimesendService">
+        <port name="timesendPort" binding="tns:timesendPortBinding">
             <soap:address location="http://127.0.0.1:6543/services/timesend/f3k"/>
         </port>
     </service>
