@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@WebService()
+@WebService(
+		name = "timesend",
+		targetNamespace = "http://timesend/"
+)
 public class f3k {
 
     public static String getWsEndpoint(){
