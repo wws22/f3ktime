@@ -87,6 +87,12 @@ We has used the own fixed version of cu-zeroconf. For install from github enter:
     git clone https://github.com/wws22/cu-zeroconf
     git checkout fixes
 
+Servers & Clients
+=================
+
+* F3KScore (server) -  Java program for managing contests <http://olgol.com/F3KScore/>
+* F3K Stopwatch (client) - Android stopwatch <https://play.google.com/store/apps/details?id=com.VictorasLT.StopWatch>
+
 More about F3K/DLG
 ==================
 
