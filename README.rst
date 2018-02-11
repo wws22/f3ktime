@@ -50,6 +50,7 @@ NB!
 ===
 
 It's very important to use equal values for PORT & PATH by compatibility reasons.
+
 The best practice contain is in use DNS Service Discovery (DNS-SD) like a Zeroconf, Bonjour, mDNS-SD <http://www.dns-sd.org>.
 That make possible to find the f3ktime-server automatically from smartphone or any other device in your LAN.
 
@@ -74,9 +75,10 @@ It was looked like:
     zeroconf.close();
 
 Where:
-PORT = 6543
-PATH = /services/timesend/f3k
-SERVICE = f3ktime
+
+    PORT = 6543
+    PATH = /services/timesend/f3k
+    SERVICE = f3ktime
 
 We has used the own fixed version of cu-zeroconf. For install from github enter::
 
