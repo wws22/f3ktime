@@ -76,6 +76,8 @@ It was looked like:
 
 Where:
 
+.. code-block:: java
+
     PORT = 6543
     PATH = /services/timesend/f3k
     SERVICE = f3ktime
