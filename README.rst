@@ -82,7 +82,7 @@ Where:
     PATH = /services/timesend/f3k
     SERVICE = f3ktime
 
-We has used the own fixed version of cu-zeroconf. For install from github enter::
+We has used the own fixed version of cu-zeroconf.  For install from github enter::
 
     git clone https://github.com/wws22/cu-zeroconf
     git checkout fixes
